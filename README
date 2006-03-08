@@ -9,7 +9,7 @@ SYNOPSIS
           Session::State::Cookie
           Authentication
           Authentication::Store::Foo
-          Authentication::Credential::Password
+          Authentication::Credential::CHAP
           /;
 
         __PACKAGE__->config->{authentication}->{chap} = {
@@ -19,7 +19,7 @@ SYNOPSIS
         sub begin : Private {
             my ($self, $c) = @_;
             $c->chap_init; # Generate a Challenge string and stores it in the session.
-            $c->stash("challenge_string", $c->get_challenged_string);
+            $c->stash("challenge_string", $c->get_challenge_string);
         
         }
 
@@ -42,7 +42,7 @@ SYNOPSIS
         <form name="MyForm">
         <input type="password" name="form_password" onclick="sendPassword();"/>
         <input type="hidden" name="password" value="" />
-        <input type="hidden" name="challenge" value="[% challenge %]" />
+        <input type="hidden" name="challenge" value="[% challenge_string %]" />
         </form>
 
         # Javascript (Client side)
@@ -110,6 +110,15 @@ METHODS
         If $username or $password are not provided, the query parameters
         "login", "user", "username" and "password", "passwd", "pass" will be
         tried instead.
+
+    chap_init $force
+        Generates a challenge string for the current session. You can put it
+        in your root's begin/end actions if needed, the challenge string
+        won't change until the session ends or you call this method with
+        $force set to 1.
+
+    get_challenge_string
+        Returns the current challenge string.
 
 RELATED USAGE
     After the user is logged in, the user object for the current logged in

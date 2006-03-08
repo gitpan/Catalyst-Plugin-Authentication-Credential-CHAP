@@ -1,5 +1,9 @@
 Revision history for Catalyst-Plugin-Authentication-Credential-CHAP
 
+0.02    2006-03-08
+        Documentation fixes, thanks to ningu :)
+        Added sample javascript functions in contrib/ from http://pajhome.org.uk/crypt/md5/
+
 0.01    2006-03-08
         First version, released on an unsuspecting world.
 

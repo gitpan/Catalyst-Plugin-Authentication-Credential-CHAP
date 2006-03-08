@@ -5,7 +5,7 @@ use strict;
 use vars qw/ $VERSION /;
 use warnings;
 
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use Scalar::Util ();
 use Catalyst::Exception ();
@@ -109,7 +109,7 @@ using a CHAP login system.
       Session::State::Cookie
       Authentication
       Authentication::Store::Foo
-      Authentication::Credential::Password
+      Authentication::Credential::CHAP
       /;
 
     __PACKAGE__->config->{authentication}->{chap} = {
@@ -119,7 +119,7 @@ using a CHAP login system.
     sub begin : Private {
         my ($self, $c) = @_;
         $c->chap_init; # Generate a Challenge string and stores it in the session.
-        $c->stash("challenge_string", $c->get_challenged_string);
+        $c->stash("challenge_string", $c->get_challenge_string);
         
     }
 
@@ -143,7 +143,7 @@ using a CHAP login system.
     <form name="MyForm">
     <input type="password" name="form_password" onclick="sendPassword();"/>
     <input type="hidden" name="password" value="" />
-    <input type="hidden" name="challenge" value="[% challenge %]" />
+    <input type="hidden" name="challenge" value="[% challenge_string %]" />
     </form>
 
     # Javascript (Client side)
@@ -229,6 +229,17 @@ client side.
 If C<$username> or C<$password> are not provided, the query parameters 
 C<login>, C<user>, C<username> and C<password>, C<passwd>, C<pass> will 
 be tried instead.
+
+=item chap_init $force
+
+Generates a challenge string for the current session. You can put it in your root's
+begin/end actions if needed, the challenge string won't change until the session ends
+or you call this method with C<$force> set to 1.
+
+=item get_challenge_string
+
+Returns the current challenge string.
+
 
 =back
 
