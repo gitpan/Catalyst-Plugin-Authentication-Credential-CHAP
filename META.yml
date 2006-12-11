@@ -1,12 +1,14 @@
 ---
 name: Catalyst-Plugin-Authentication-Credential-CHAP
-version: 0.02
+version: 0.03
 author:
   - 'Renaud Drousies <rdrousies@cpan.org>'
 abstract: |-
   Authenticate a user
   using a CHAP login system.
 license: perl
+resources:
+  license: http://dev.perl.org/licenses/
 build_requires:
   Catalyst: '>= 5.65'
   Catalyst::Plugin::Authentication::Credential::Password: 0
@@ -16,5 +18,8 @@ build_requires:
 provides:
   Catalyst::Plugin::Authentication::Credential::CHAP:
     file: lib/Catalyst/Plugin/Authentication/Credential/CHAP.pm
-    version: 0.02
-generated_by: Module::Build version 0.2612
+    version: 0.03
+generated_by: Module::Build version 0.2805
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

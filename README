@@ -120,6 +120,8 @@ METHODS
     get_challenge_string
         Returns the current challenge string.
 
+    setup
+    gen_challenge_string
 RELATED USAGE
     After the user is logged in, the user object for the current logged in
     user can be retrieved from the context using the "$c->user" method.

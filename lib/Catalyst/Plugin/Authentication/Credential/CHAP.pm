@@ -5,7 +5,7 @@ use strict;
 use vars qw/ $VERSION /;
 use warnings;
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use Scalar::Util ();
 use Catalyst::Exception ();
@@ -239,6 +239,10 @@ or you call this method with C<$force> set to 1.
 =item get_challenge_string
 
 Returns the current challenge string.
+
+=item setup
+
+=item gen_challenge_string
 
 
 =back

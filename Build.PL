@@ -5,6 +5,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     module_name         => 'Catalyst::Plugin::Authentication::Credential::CHAP',
     license             => 'perl',
+    create_makefile_pl  => 'traditional',
     dist_author         => 'Renaud Drousies <rdrousies@cpan.org>',
     dist_version_from   => 'lib/Catalyst/Plugin/Authentication/Credential/CHAP.pm',
     build_requires => {
